@@ -13,6 +13,7 @@ protocol HomeViewControllerProtocol: AnyObject {
     func reloadData()
     func showLoadingView()
     func hideLoadingView()
+    func setupSearchBar()
 }
 
 class HomeViewController: BaseViewController, LoadingShowable {
@@ -29,6 +30,7 @@ class HomeViewController: BaseViewController, LoadingShowable {
 }
 
 extension HomeViewController: HomeViewControllerProtocol {
+  
 
     func setTitle(title: String) {
         self.title = title
@@ -50,6 +52,11 @@ extension HomeViewController: HomeViewControllerProtocol {
     
     func hideLoadingView() {
         hideLoading()
+    }
+    
+    func setupSearchBar() {
+        searchBar.delegate = self
+        searchBar.placeholder = "Ara"
     }
     
 }
@@ -74,4 +81,11 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     
+}
+
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter?.searchResult(text: searchText)
+    }
 }
