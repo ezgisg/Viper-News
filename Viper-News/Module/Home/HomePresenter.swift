@@ -12,6 +12,7 @@ protocol HomePresenterProtocol {
     func getIndexSource(index: Int) -> Source?
     func numberOfItems() -> Int?
     func searchResult(text: String)
+    func didSelectRow(index: Int)
 }
 
 final class HomePresenter {
@@ -32,12 +33,13 @@ final class HomePresenter {
 extension HomePresenter: HomePresenterProtocol {
 
     func getIndexSource(index: Int) -> Source? {
-        return filteredSources[index]
+        return filteredSources[safe: index]
     }
     
     func viewDidLoad() {
         view?.setupTableView()
         view?.setupSearchBar()
+        view?.setTitle(title: "Haberler")
         view?.showLoadingView()
         interactor.fetchSourcesData()
     }
@@ -60,6 +62,12 @@ extension HomePresenter: HomePresenterProtocol {
         self.filteredSources = filteredSources
         view?.reloadData()
     }
+    
+    func didSelectRow(index: Int) {
+        let selectedSource = filteredSources[index]
+        router.navigate(.detailScreen(selectedSource))
+    }
+    
 }
 
 extension HomePresenter: HomeInteractorOutputProtocol {

@@ -44,6 +44,4 @@ extension SplashRouter: SplashRouterProtocol {
             window.rootViewController = navigationController
         }
     }
-    
-    
 }

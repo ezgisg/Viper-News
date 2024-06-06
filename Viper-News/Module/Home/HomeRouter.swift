@@ -8,11 +8,11 @@
 import Foundation
 
 protocol HomeRouterProtocol {
-    
+    func navigate (_ route: HomeRoutes)
 }
 
 enum HomeRoutes {
-    
+    case detailScreen(Source)
 }
 
 final class HomeRouter {
@@ -32,5 +32,12 @@ final class HomeRouter {
 
 
 extension HomeRouter: HomeRouterProtocol {
-    
+    func navigate(_ route: HomeRoutes) {
+        switch route {
+        case .detailScreen(let source):
+            let detailVC = NewsDetailRouter.createModule()
+            detailVC.source = source
+            viewController?.navigationController?.pushViewController(detailVC, animated: true)
+        }
+    }
 }
