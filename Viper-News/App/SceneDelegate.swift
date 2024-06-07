@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         window.rootViewController = splash
         self.window = window
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

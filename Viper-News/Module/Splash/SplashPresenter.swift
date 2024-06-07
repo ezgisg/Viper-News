@@ -52,7 +52,8 @@ extension SplashPresenter: SplashPresenterProtocol {
     
     @objc func labelTapped() {
         if internetStatus {
-            router.navigate(.homeScreen)
+//            router.navigate(.homeScreen)
+            router.navigate(.tabBar)
             //TODO: home ekranına otomatik yönlendirme
         } else {
             view.makeAlert(title: Constants.noConnectionTitle, message: Constants.noConnectionMessage)

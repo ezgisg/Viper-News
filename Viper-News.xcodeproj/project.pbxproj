@@ -17,6 +17,10 @@
 		AB87C0C72C11B47B00ECBBF1 /* DetailsCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB87C0C62C11B47B00ECBBF1 /* DetailsCellPresenter.swift */; };
 		AB87C0CA2C11DD0600ECBBF1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AB87C0C92C11DD0600ECBBF1 /* Kingfisher */; };
 		AB87C0CE2C11F81700ECBBF1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB87C0CD2C11F81700ECBBF1 /* UserDefaults.swift */; };
+		AB97D4572C1374E00002E4CB /* ReadingListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB97D4562C1374E00002E4CB /* ReadingListViewController.xib */; };
+		AB97D4582C1374E00002E4CB /* ReadingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97D4552C1374E00002E4CB /* ReadingListViewController.swift */; };
+		AB97D45A2C1374FF0002E4CB /* TabbarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97D4592C1374FF0002E4CB /* TabbarVC.swift */; };
+		AB97D45C2C137F790002E4CB /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97D45B2C137F790002E4CB /* UserDefaults+Extensions.swift */; };
 		ABD721212C10500200C8CF45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD721202C10500200C8CF45 /* AppDelegate.swift */; };
 		ABD721232C10500200C8CF45 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD721222C10500200C8CF45 /* SceneDelegate.swift */; };
 		ABD721252C10500200C8CF45 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD721242C10500200C8CF45 /* ViewController.swift */; };
@@ -81,6 +85,10 @@
 		AB87C0C32C11B46900ECBBF1 /* DetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsCell.xib; sourceTree = "<group>"; };
 		AB87C0C62C11B47B00ECBBF1 /* DetailsCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCellPresenter.swift; sourceTree = "<group>"; };
 		AB87C0CD2C11F81700ECBBF1 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		AB97D4552C1374E00002E4CB /* ReadingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListViewController.swift; sourceTree = "<group>"; };
+		AB97D4562C1374E00002E4CB /* ReadingListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReadingListViewController.xib; sourceTree = "<group>"; };
+		AB97D4592C1374FF0002E4CB /* TabbarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarVC.swift; sourceTree = "<group>"; };
+		AB97D45B2C137F790002E4CB /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		ABD7211D2C10500200C8CF45 /* Viper-News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Viper-News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABD721202C10500200C8CF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABD721222C10500200C8CF45 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +164,23 @@
 				AB87C0C62C11B47B00ECBBF1 /* DetailsCellPresenter.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		AB97D4532C1374790002E4CB /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				AB97D4592C1374FF0002E4CB /* TabbarVC.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		AB97D4542C13748D0002E4CB /* ReadingList */ = {
+			isa = PBXGroup;
+			children = (
+				AB97D4552C1374E00002E4CB /* ReadingListViewController.swift */,
+				AB97D4562C1374E00002E4CB /* ReadingListViewController.xib */,
+			);
+			path = ReadingList;
 			sourceTree = "<group>";
 		};
 		ABD721142C10500200C8CF45 = {
@@ -275,6 +300,8 @@
 		ABD721682C10814500C8CF45 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				AB97D4542C13748D0002E4CB /* ReadingList */,
+				AB97D4532C1374790002E4CB /* Tabbar */,
 				ABD721842C109BBA00C8CF45 /* Views */,
 				ABD7216A2C10815900C8CF45 /* Entity */,
 				ABD7217A2C109B7100C8CF45 /* HomeViewController.swift */,
@@ -331,6 +358,7 @@
 			children = (
 				ABD7218B2C109C1900C8CF45 /* Extensions+TableView.swift */,
 				ABD721922C109D2600C8CF45 /* Extensions+Array.swift */,
+				AB97D45B2C137F790002E4CB /* UserDefaults+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -467,6 +495,7 @@
 			files = (
 				ABD7212D2C10500400C8CF45 /* Assets.xcassets in Resources */,
 				AB87C0BF2C11B41E00ECBBF1 /* NewsDetailViewController.xib in Resources */,
+				AB97D4572C1374E00002E4CB /* ReadingListViewController.xib in Resources */,
 				ABD721302C10500400C8CF45 /* Base in Resources */,
 				ABD7218A2C109BFA00C8CF45 /* SourcesCell.xib in Resources */,
 				ABD7217D2C109B7100C8CF45 /* HomeViewController.xib in Resources */,
@@ -499,6 +528,7 @@
 			files = (
 				ABD721892C109BFA00C8CF45 /* SourcesCell.swift in Sources */,
 				ABD721252C10500200C8CF45 /* ViewController.swift in Sources */,
+				AB97D45A2C1374FF0002E4CB /* TabbarVC.swift in Sources */,
 				ABD721722C10825100C8CF45 /* SplashRouter.swift in Sources */,
 				ABD721982C10A13D00C8CF45 /* LoadingShowable.swift in Sources */,
 				ABD7212B2C10500200C8CF45 /* Viper_News.xcdatamodeld in Sources */,
@@ -512,7 +542,9 @@
 				AB87C0BC2C11B2F800ECBBF1 /* NewsDetailInteractor.swift in Sources */,
 				AB87C0BA2C11B2E000ECBBF1 /* NewsDetailPresenter.swift in Sources */,
 				ABD721702C10824300C8CF45 /* SplashPresenter.swift in Sources */,
+				AB97D4582C1374E00002E4CB /* ReadingListViewController.swift in Sources */,
 				ABD721762C10827C00C8CF45 /* SplashViewController.swift in Sources */,
+				AB97D45C2C137F790002E4CB /* UserDefaults+Extensions.swift in Sources */,
 				ABD721662C10662900C8CF45 /* Router.swift in Sources */,
 				ABD721932C109D2600C8CF45 /* Extensions+Array.swift in Sources */,
 				ABD721812C109B8D00C8CF45 /* HomePresenter.swift in Sources */,

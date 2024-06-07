@@ -26,7 +26,7 @@ class HomeViewController: BaseViewController, LoadingShowable {
         super.viewDidLoad()
         presenter?.viewDidLoad()
     }
-
+    
 }
 
 extension HomeViewController: HomeViewControllerProtocol {

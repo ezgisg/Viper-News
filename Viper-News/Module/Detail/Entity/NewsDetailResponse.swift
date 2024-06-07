@@ -18,6 +18,7 @@ struct Article: Decodable {
     let source: ArticleSource
     let author, title, description, url, urlToImage, publishedAt, content: String?
     var isAddedReadingList: Bool = false
+    var readingListEntity: ReadingListNews
     
     enum CodingKeys: CodingKey {
         case source
@@ -28,7 +29,7 @@ struct Article: Decodable {
         case urlToImage
         case publishedAt
         case content
-        case readingListStatus
+        case isAddedReadingList
     }
     
     init(from decoder: any Decoder) throws {
@@ -41,12 +42,41 @@ struct Article: Decodable {
         self.urlToImage = try container.decodeIfPresent(String.self, forKey: .urlToImage)
         self.publishedAt = try container.decodeIfPresent(String.self, forKey: .publishedAt)
         self.content = try container.decodeIfPresent(String.self, forKey: .content)
+        
         self.isAddedReadingList = false
+        self.readingListEntity = ReadingListNews(
+            title: title,
+            description: description,
+            url: url,
+            urlToImage: urlToImage
+        )
     }
+    
 }
 
-//MARK - ArticleSource
+//MARK: - ArticleSource
 struct ArticleSource: Decodable {
     let id: String?
     let name: String?
+}
+
+
+// MARK: - ReadingListNews
+struct ReadingListNews: Codable, Equatable {
+    let title: String?
+    let description: String?
+    let url: String?
+    let urlToImage: String?
+    
+    init(
+        title: String?,
+        description: String?,
+        url: String?,
+        urlToImage: String?
+    ) {
+        self.title = title
+        self.description = description
+        self.url = url
+        self.urlToImage = urlToImage
+    }
 }

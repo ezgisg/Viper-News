@@ -40,7 +40,7 @@ extension DetailsCellPresenter: DetailsCellPresenterProtocol {
         view.setImage(imageUrlString: article.urlToImage ?? "")
         guard let url = article.url else { return }
         saved.getNewsToSavedList { list in
-            if list.contains(url)  {
+            if list.contains(where: { $0.url == url}) {
                 article.isAddedReadingList = true
             }
             let title = article.isAddedReadingList ? Constants.removeFromListTitle : Constants.addListTitle
@@ -52,17 +52,17 @@ extension DetailsCellPresenter: DetailsCellPresenterProtocol {
     //TODO: kayıt/çıkartma işlemi bitene kadar buton isimlerini değiştirmeyip load gösterebiliriz
     func saveList() {
         if article.isAddedReadingList {
-            guard let url = article.url else { return }
+            guard !(article.readingListEntity.url ?? "").isEmpty else { return }
             article.isAddedReadingList = false
             view.setButton(buttonTitle: Constants.addListTitle)
-            saved.removeNewsFromSavedList(url)
+            saved.removeNewsFromSavedList(article.readingListEntity)
+            
         } else {
-            guard let url = article.url else { return }
+            guard !(article.readingListEntity.url ?? "").isEmpty else { return }
             article.isAddedReadingList = true
             view.setButton(buttonTitle: Constants.removeFromListTitle)
-            saved.addNewsToSaveList(url)
+            saved.addNewsToSaveList(article.readingListEntity)
         }
- 
     }
     
 }

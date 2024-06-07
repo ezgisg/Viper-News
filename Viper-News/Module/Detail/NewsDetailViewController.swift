@@ -12,6 +12,7 @@ protocol NewsDetailViewControllerProtocol: AnyObject {
     func setupTableview()
     func setupSearchBar()
     func reloadData()
+    func setTitle(title: String)
 }
 
 class NewsDetailViewController: UIViewController {
@@ -32,8 +33,7 @@ class NewsDetailViewController: UIViewController {
 }
 
 extension NewsDetailViewController: NewsDetailViewControllerProtocol {
- 
-
+  
     func setupTableview() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -52,8 +52,14 @@ extension NewsDetailViewController: NewsDetailViewControllerProtocol {
         searchBar.delegate = self
     }
     
+    func setTitle(title: String) {
+        self.title = title
+    }
+    
 }
 
+
+//TODO: hiçbir haber yoksa (numberofitems 0 ise) boş view oluşturalım
 extension NewsDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.numberOfItems() ?? 0

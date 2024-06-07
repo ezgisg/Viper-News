@@ -44,6 +44,7 @@ extension NewsDetailPresenter: NewsDetailPresenterProtocol {
     func viewDidLoad() {
         guard let source = view?.getSource() else { return }
         interactor.fetchDetails(sourceID: source.id ?? "", page: 1, query: nil)
+        view?.setTitle(title: "Tüm Haberler")
     }
     
     func getArticle(index: Int) -> Article? {

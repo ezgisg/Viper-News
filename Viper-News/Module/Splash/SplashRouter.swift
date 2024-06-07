@@ -14,6 +14,7 @@ protocol SplashRouterProtocol: AnyObject {
 
 enum SplashRoutes {
     case homeScreen
+    case tabBar
 }
 
 
@@ -42,6 +43,11 @@ extension SplashRouter: SplashRouterProtocol {
             let homeVC = HomeRouter.createModule()
             let navigationController = UINavigationController(rootViewController: homeVC )
             window.rootViewController = navigationController
+        case .tabBar:
+            guard let window = viewController?.view.window else { return }
+            let tabBarController = TabBarController()
+            window.rootViewController = tabBarController
+            window.makeKeyAndVisible()
         }
     }
 }
