@@ -12,6 +12,14 @@ protocol DetailsCellPresenterProtocol: AnyObject {
     func saveList()
 }
 
+extension DetailsCellPresenter {
+    fileprivate enum Constants {
+      static let addListTitle = "Okuma Listesine Ekle"
+      static let removeFromListTitle = "Okuma Listesinden Çıkart"
+    }
+}
+
+
 final class DetailsCellPresenter {
     var article: Article
     var view: DetailsCellProtocol
@@ -33,25 +41,25 @@ extension DetailsCellPresenter: DetailsCellPresenterProtocol {
         guard let url = article.url else { return }
         saved.getNewsToSavedList { list in
             if list.contains(url)  {
-                view.setButton(buttonTitle: "Okuma Listesinden Çıkart")
-            } else {
-                view.setButton(buttonTitle: "Okuma Listesine Ekle")
+                article.isAddedReadingList = true
             }
+            let title = article.isAddedReadingList ? Constants.removeFromListTitle : Constants.addListTitle
+            view.setButton(buttonTitle: title)
         }
     }
     
     
     //TODO: kayıt/çıkartma işlemi bitene kadar buton isimlerini değiştirmeyip load gösterebiliriz
     func saveList() {
-        if article.readingListStatus {
+        if article.isAddedReadingList {
             guard let url = article.url else { return }
-            article.readingListStatus = false
-            view.setButton(buttonTitle: "Okuma Listesine Ekle")
+            article.isAddedReadingList = false
+            view.setButton(buttonTitle: Constants.addListTitle)
             saved.removeNewsFromSavedList(url)
         } else {
             guard let url = article.url else { return }
-            article.readingListStatus = true
-            view.setButton(buttonTitle: "Okuma Listesinden Çıkart")
+            article.isAddedReadingList = true
+            view.setButton(buttonTitle: Constants.removeFromListTitle)
             saved.addNewsToSaveList(url)
         }
  

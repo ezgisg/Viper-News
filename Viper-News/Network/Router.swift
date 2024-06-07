@@ -23,7 +23,7 @@ enum Router: URLRequestConvertible {
         switch self {
         case .sources:
             return "sources"
-        case .everything(source: let source, page: let page, query: let query):
+        case .everything(source: _, page: _, query: _):
             return "everything"
         }
     }

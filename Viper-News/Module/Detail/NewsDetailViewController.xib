@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsDetailViewController" customModule="Viper_News" customModuleProvider="target">
             <connections>
-                <outlet property="searchBar" destination="pcS-7b-s7f" id="yMb-f1-xM0"/>
+                <outlet property="searchBar" destination="pcS-7b-s7f" id="wXe-GF-Jcm"/>
                 <outlet property="tableView" destination="Kw8-8Y-5yW" id="FQv-bj-510"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

@@ -17,7 +17,7 @@ struct NewsDetailResponse: Decodable {
 struct Article: Decodable {
     let source: ArticleSource
     let author, title, description, url, urlToImage, publishedAt, content: String?
-    var readingListStatus: Bool = false
+    var isAddedReadingList: Bool = false
     
     enum CodingKeys: CodingKey {
         case source
@@ -41,7 +41,7 @@ struct Article: Decodable {
         self.urlToImage = try container.decodeIfPresent(String.self, forKey: .urlToImage)
         self.publishedAt = try container.decodeIfPresent(String.self, forKey: .publishedAt)
         self.content = try container.decodeIfPresent(String.self, forKey: .content)
-        self.readingListStatus = false
+        self.isAddedReadingList = false
     }
 }
 

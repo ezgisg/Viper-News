@@ -10,6 +10,7 @@ import UIKit
 protocol NewsDetailViewControllerProtocol: AnyObject {
     func getSource() -> Source?
     func setupTableview()
+    func setupSearchBar()
     func reloadData()
 }
 
@@ -25,11 +26,13 @@ class NewsDetailViewController: UIViewController {
         super.viewDidLoad()
         presenter?.viewDidLoad()
         setupTableview()
+        setupSearchBar()
     }
 
 }
 
 extension NewsDetailViewController: NewsDetailViewControllerProtocol {
+ 
 
     func setupTableview() {
         tableView.delegate = self
@@ -43,6 +46,10 @@ extension NewsDetailViewController: NewsDetailViewControllerProtocol {
     
     func reloadData() {
         tableView.reloadData()
+    }
+    
+    func setupSearchBar() {
+        searchBar.delegate = self
     }
     
 }
@@ -63,5 +70,22 @@ extension NewsDetailViewController: UITableViewDataSource {
 }
 
 extension NewsDetailViewController: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard !(presenter?.isAllPagesFetched() ?? true) else { return }
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - height {
+            presenter?.loadMoreData()
+        }
+    }
+}
+
+extension NewsDetailViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter?.fetchDataWithSearchText(text: searchText)
+    }
     
 }

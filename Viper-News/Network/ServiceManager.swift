@@ -9,7 +9,7 @@ import Foundation
 
 protocol NewsServiceProtocol {
     func fetchNewsSources(completion: @escaping (NewsSourcesResult) -> ())
-    func fetchDetail(sourceID: String, page: Int, query: String?, completion: @escaping (NewsDetailResult) -> ())
+    func fetchDetail(sourceID: String, page: Int?, query: String?, completion: @escaping (NewsDetailResult) -> ())
 }
 
 class NewsService: NewsServiceProtocol {
@@ -17,7 +17,7 @@ class NewsService: NewsServiceProtocol {
         NetworkManager.shared.request(Router.sources, decodeToType: NewsSourcesResponse.self, completion: completion)
     }
     
-    func fetchDetail(sourceID: String, page: Int, query: String?, completion: @escaping (NewsDetailResult) -> ()) {
+    func fetchDetail(sourceID: String, page: Int?, query: String?, completion: @escaping (NewsDetailResult) -> ()) {
         NetworkManager.shared.request(Router.everything(source: sourceID, page: page, query: query), decodeToType: NewsDetailResponse.self, completion: completion)
     }
     

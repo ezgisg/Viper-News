@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NewsDetailInteractorProtocol: AnyObject {
-    func fetchDetails(sourceID: String, page: Int, query: String?)
+    func fetchDetails(sourceID: String, page: Int?, query: String?)
 }
 
 protocol NewsDetailInteractorOutputProtocol: AnyObject {
@@ -21,7 +21,7 @@ final class NewsDetailInteractor {
 }
 
 extension NewsDetailInteractor: NewsDetailInteractorProtocol {
-    func fetchDetails(sourceID: String, page: Int, query: String?) {
+    func fetchDetails(sourceID: String, page: Int?, query: String?) {
         service.fetchDetail(sourceID: sourceID, page: page, query: query) { result in
             self.output?.fetchDetailsOutput(result: result)
         }
