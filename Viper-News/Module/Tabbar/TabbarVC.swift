@@ -23,7 +23,8 @@ class TabBarController: UITabBarController {
         homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
         
         // ReadingListViewController
-        let readingListViewController = ReadingListViewController()
+        let readingListViewController = NewsDetailRouter.createModule()
+        readingListViewController.isReadingList = true
         let readingListNavigationController = UINavigationController(rootViewController: readingListViewController)
         readingListNavigationController.tabBarItem = UITabBarItem(title: "Reading List", image: UIImage(systemName: "book"), tag: 1)
         

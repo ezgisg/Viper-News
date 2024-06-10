@@ -70,7 +70,7 @@ extension SplashPresenter: SplashInteractorOutputProtocol {
             internetStatus = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
                 guard let self else { return }
-                self.router.navigate(.homeScreen)
+                self.router.navigate(.tabBar)
                     }
         } else {
             internetStatus = false

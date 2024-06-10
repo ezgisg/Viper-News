@@ -12,6 +12,10 @@ protocol DetailsCellPresenterProtocol: AnyObject {
     func saveList()
 }
 
+protocol DetailCellDelegate: AnyObject {
+    func removeFromReadingList(url: String)
+}
+
 extension DetailsCellPresenter {
     fileprivate enum Constants {
       static let addListTitle = "Okuma Listesine Ekle"
@@ -24,10 +28,12 @@ final class DetailsCellPresenter {
     var article: Article
     var view: DetailsCellProtocol
     var saved = savedNews()
+    weak var delegate: DetailCellDelegate?
     
-    init(article: Article, view: DetailsCellProtocol) {
+    init(article: Article, view: DetailsCellProtocol, delegate: DetailCellDelegate) {
         self.article = article
         self.view = view
+        self.delegate = delegate
     }
     
 }
@@ -56,6 +62,7 @@ extension DetailsCellPresenter: DetailsCellPresenterProtocol {
             article.isAddedReadingList = false
             view.setButton(buttonTitle: Constants.addListTitle)
             saved.removeNewsFromSavedList(article.readingListEntity)
+            delegate?.removeFromReadingList(url: article.readingListEntity.url ?? "")
             
         } else {
             guard !(article.readingListEntity.url ?? "").isEmpty else { return }

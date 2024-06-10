@@ -15,8 +15,8 @@ struct NewsDetailResponse: Decodable {
 }
 
 struct Article: Decodable {
-    let source: ArticleSource
-    let author, title, description, url, urlToImage, publishedAt, content: String?
+    var source: ArticleSource
+    var author, title, description, url, urlToImage, publishedAt, content: String?
     var isAddedReadingList: Bool = false
     var readingListEntity: ReadingListNews
     
@@ -30,6 +30,30 @@ struct Article: Decodable {
         case publishedAt
         case content
         case isAddedReadingList
+    }
+    
+    init(
+        source: ArticleSource,
+        author: String?,
+        title: String?,
+        description: String?,
+        url: String?,
+        urlToImage: String?,
+        publishedAt: String?,
+        content: String?,
+        isAddedReadingList: Bool = false,
+        readingListEntity: ReadingListNews
+    ) {
+        self.source = source
+        self.author = author
+        self.title = title
+        self.description = description
+        self.url = url
+        self.urlToImage = urlToImage
+        self.publishedAt = publishedAt
+        self.content = content
+        self.isAddedReadingList = isAddedReadingList
+        self.readingListEntity = readingListEntity
     }
     
     init(from decoder: any Decoder) throws {

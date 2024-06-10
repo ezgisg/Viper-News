@@ -8,6 +8,7 @@
 import UIKit
 
 protocol NewsDetailViewControllerProtocol: AnyObject {
+    var isReadingList: Bool {get set}
     func getSource() -> Source?
     func setupTableview()
     func setupSearchBar()
@@ -22,6 +23,7 @@ class NewsDetailViewController: UIViewController {
     
     var presenter: NewsDetailPresenterProtocol?
     var source: Source?
+    private var _isReadingList: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +32,24 @@ class NewsDetailViewController: UIViewController {
         setupSearchBar()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        presenter?.viewWillAppear()
+        reloadData()
+    }
+    
 }
 
 extension NewsDetailViewController: NewsDetailViewControllerProtocol {
+    var isReadingList: Bool {
+          get {
+              return _isReadingList
+          }
+          set {
+              _isReadingList = newValue
+          }
+      }
+    
   
     func setupTableview() {
         tableView.delegate = self
@@ -50,6 +67,9 @@ extension NewsDetailViewController: NewsDetailViewControllerProtocol {
     
     func setupSearchBar() {
         searchBar.delegate = self
+        if isReadingList {
+            searchBar.isHidden = true
+        }
     }
     
     func setTitle(title: String) {
@@ -68,7 +88,7 @@ extension NewsDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(with: DetailsCell.self , for: indexPath)
         if let article = presenter?.getArticle(index: indexPath.row) {
-        cell.cellPresenter = DetailsCellPresenter(article: article, view: cell)
+            cell.cellPresenter = DetailsCellPresenter(article: article, view: cell, delegate: self)
         }
         return cell
     }
@@ -92,6 +112,13 @@ extension NewsDetailViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter?.fetchDataWithSearchText(text: searchText)
+    }
+    
+}
+
+extension NewsDetailViewController: DetailCellDelegate {
+    func removeFromReadingList(url: String) {
+        presenter?.updateReadingList(url: url)
     }
     
 }

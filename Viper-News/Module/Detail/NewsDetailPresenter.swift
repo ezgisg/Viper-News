@@ -9,11 +9,13 @@ import Foundation
 
 protocol NewsDetailPresenterProtocol: AnyObject {
     func viewDidLoad()
+    func viewWillAppear()
     func getArticle(index: Int) -> Article?
     func numberOfItems() -> Int
     func loadMoreData()
     func isAllPagesFetched() -> Bool
     func fetchDataWithSearchText(text: String)
+    func updateReadingList(url: String)
 }
 
 final class NewsDetailPresenter {
@@ -24,7 +26,7 @@ final class NewsDetailPresenter {
     var articles: [Article] = []
     var searchedArticles: [Article] = []
     var articlesToShow: [Article] = []
-    
+    var saved = savedNews()
     
     //TODO: current page yerine sorgudan dönen totalresult ile kıyaslayarak ilerlenebilir
     var currentPage = 1
@@ -40,6 +42,12 @@ final class NewsDetailPresenter {
 }
 
 extension NewsDetailPresenter: NewsDetailPresenterProtocol {
+    
+    
+    func viewWillAppear() {
+        getAllSavedArticles()
+    }
+    
     
     func viewDidLoad() {
         guard let source = view?.getSource() else { return }
@@ -74,6 +82,37 @@ extension NewsDetailPresenter: NewsDetailPresenterProtocol {
         isSearch = true
         guard let source = view?.getSource() else { return }
         interactor.fetchDetails(sourceID: source.id ?? "", page: nil, query: text)
+    }
+    
+    func getAllSavedArticles() {
+        guard view?.isReadingList == true else { return }
+        saved.getNewsToSavedList { list in
+            articlesToShow.removeAll(keepingCapacity: false)
+            list.forEach { readingListNews in
+                let article = Article(
+                          source: ArticleSource(id: nil, name: nil), // assuming source is nil for saved articles
+                          author: nil,
+                          title: readingListNews.title,
+                          description: readingListNews.description,
+                          url: readingListNews.url,
+                          urlToImage: readingListNews.urlToImage,
+                          publishedAt: nil,
+                          content: nil,
+                          isAddedReadingList: true,
+                          readingListEntity: readingListNews
+                      )
+                articlesToShow.append(article)
+            }
+            view?.reloadData()
+        }
+    }
+    
+    func updateReadingList(url: String) {
+        guard view?.isReadingList == true else { return }
+        let index = articlesToShow.firstIndex { $0.url == url }
+        guard let index else { return }
+        articlesToShow.remove(at: index)
+        view?.reloadData()
     }
     
     

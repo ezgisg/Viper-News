@@ -268,6 +268,8 @@
 		ABD721562C10506B00C8CF45 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				AB97D4532C1374790002E4CB /* Tabbar */,
+				AB97D4542C13748D0002E4CB /* ReadingList */,
 				ABD721692C10815000C8CF45 /* Detail */,
 				ABD721682C10814500C8CF45 /* Home */,
 				ABD721672C10813F00C8CF45 /* Splash */,
@@ -300,8 +302,6 @@
 		ABD721682C10814500C8CF45 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				AB97D4542C13748D0002E4CB /* ReadingList */,
-				AB97D4532C1374790002E4CB /* Tabbar */,
 				ABD721842C109BBA00C8CF45 /* Views */,
 				ABD7216A2C10815900C8CF45 /* Entity */,
 				ABD7217A2C109B7100C8CF45 /* HomeViewController.swift */,
