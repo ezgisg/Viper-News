@@ -39,7 +39,7 @@ extension HomePresenter: HomePresenterProtocol {
     func viewDidLoad() {
         view?.setupTableView()
         view?.setupSearchBar()
-        view?.setTitle(title: "Haberler")
+        view?.setTitle(title: "News")
         view?.showLoadingView()
         interactor.fetchSourcesData()
     }
@@ -51,6 +51,7 @@ extension HomePresenter: HomePresenterProtocol {
     func searchResult(text: String) {
         guard text.count != 0 else {
             filteredSources = sources
+            view?.reloadData()
             return
         }
         let uppercasedText = text.uppercased()

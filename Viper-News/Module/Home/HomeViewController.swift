@@ -64,7 +64,6 @@ extension HomeViewController: HomeViewControllerProtocol {
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //TODO: düzeltilecek
         return presenter?.numberOfItems() ?? 0
     }
     

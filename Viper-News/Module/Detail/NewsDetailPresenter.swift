@@ -16,6 +16,7 @@ protocol NewsDetailPresenterProtocol: AnyObject {
     func isAllPagesFetched() -> Bool
     func fetchDataWithSearchText(text: String)
     func updateReadingList(url: String)
+    func tappedRow(_ index: Int)
 }
 
 final class NewsDetailPresenter {
@@ -42,8 +43,7 @@ final class NewsDetailPresenter {
 }
 
 extension NewsDetailPresenter: NewsDetailPresenterProtocol {
-    
-    
+
     func viewWillAppear() {
         getAllSavedArticles()
     }
@@ -52,7 +52,7 @@ extension NewsDetailPresenter: NewsDetailPresenterProtocol {
     func viewDidLoad() {
         guard let source = view?.getSource() else { return }
         interactor.fetchDetails(sourceID: source.id ?? "", page: 1, query: nil)
-        view?.setTitle(title: "Tüm Haberler")
+        view?.setTitle(title: "All News")
     }
     
     func getArticle(index: Int) -> Article? {
@@ -78,6 +78,7 @@ extension NewsDetailPresenter: NewsDetailPresenterProtocol {
     func fetchDataWithSearchText(text: String) {
         guard text.count != 0 else {
             articlesToShow = articles
+            view?.reloadData()
             return }
         isSearch = true
         guard let source = view?.getSource() else { return }
@@ -90,7 +91,7 @@ extension NewsDetailPresenter: NewsDetailPresenterProtocol {
             articlesToShow.removeAll(keepingCapacity: false)
             list.forEach { readingListNews in
                 let article = Article(
-                          source: ArticleSource(id: nil, name: nil), // assuming source is nil for saved articles
+                          source: ArticleSource(id: nil, name: nil),
                           author: nil,
                           title: readingListNews.title,
                           description: readingListNews.description,
@@ -115,6 +116,13 @@ extension NewsDetailPresenter: NewsDetailPresenterProtocol {
         view?.reloadData()
     }
     
+    func tappedRow(_ index: Int) {
+        let urlString = articlesToShow[index].url
+        if let urlString,
+           let url = URL(string: urlString) {
+            router.navigate(.openUrl(url: url))
+        }
+    }
     
 }
 

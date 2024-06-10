@@ -24,19 +24,19 @@
                                 <rect key="frame" x="5" y="5" width="569" height="201"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0qb-7B-X55">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="201"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="201"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iu4-sw-sjo">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="ltl-n4-qqf"/>
-                                                    <constraint firstAttribute="height" constant="100" id="uJm-Pe-gT1"/>
+                                                    <constraint firstAttribute="width" constant="120" id="ltl-n4-qqf"/>
+                                                    <constraint firstAttribute="height" constant="120" id="uJm-Pe-gT1"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZe-EY-Zm8">
-                                                <rect key="frame" x="0.0" y="110" width="100" height="91"/>
+                                                <rect key="frame" x="0.0" y="130" width="120" height="71"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="dU2-C0-lze"/>
+                                                    <constraint firstAttribute="width" constant="120" id="dU2-C0-lze"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Okuma Listeme Ekle">
@@ -49,23 +49,25 @@
                                             </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="oZe-EY-Zm8" firstAttribute="centerX" secondItem="Iu4-sw-sjo" secondAttribute="centerX" id="7mL-u5-SCn"/>
                                             <constraint firstItem="Iu4-sw-sjo" firstAttribute="centerX" secondItem="0qb-7B-X55" secondAttribute="centerX" id="FNN-ed-Mzx"/>
                                             <constraint firstItem="oZe-EY-Zm8" firstAttribute="centerX" secondItem="0qb-7B-X55" secondAttribute="centerX" id="NQf-yL-lva"/>
-                                            <constraint firstAttribute="width" constant="100" id="vXz-gZ-7Rj"/>
+                                            <constraint firstItem="Iu4-sw-sjo" firstAttribute="centerX" secondItem="0qb-7B-X55" secondAttribute="centerX" id="dfE-Ro-aSN"/>
+                                            <constraint firstAttribute="width" constant="120" id="vXz-gZ-7Rj"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3K8-s5-VFx">
-                                        <rect key="frame" x="110" y="0.0" width="459" height="201"/>
+                                        <rect key="frame" x="130" y="0.0" width="439" height="201"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGu-rg-qgz">
-                                                <rect key="frame" x="0.0" y="0.0" width="459" height="95.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="439" height="95.666666666666671"/>
                                                 <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECp-ea-WmF">
-                                                <rect key="frame" x="0.0" y="95.666666666666686" width="459" height="105.33333333333331"/>
+                                                <rect key="frame" x="0.0" y="95.666666666666686" width="439" height="105.33333333333331"/>
                                                 <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

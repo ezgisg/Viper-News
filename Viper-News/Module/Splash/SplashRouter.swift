@@ -46,8 +46,12 @@ extension SplashRouter: SplashRouterProtocol {
         case .tabBar:
             guard let window = viewController?.view.window else { return }
             let tabBarController = TabBarController()
-            window.rootViewController = tabBarController
-            window.makeKeyAndVisible()
+            
+            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                window.rootViewController = tabBarController
+            }, completion: { _ in
+                window.makeKeyAndVisible()
+            })
         }
     }
 }

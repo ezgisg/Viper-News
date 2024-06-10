@@ -6,10 +6,16 @@
 //
 
 import Foundation
+import UIKit.UIApplication
 
 protocol NewsDetailRouterProtocol: AnyObject {
-    
+    func navigate(_ route: DetailRoutes)
 }
+
+enum DetailRoutes {
+    case openUrl(url: URL)
+}
+
 
 final class NewsDetailRouter {
     weak var viewController: NewsDetailViewController?
@@ -28,5 +34,14 @@ final class NewsDetailRouter {
 
 
 extension NewsDetailRouter: NewsDetailRouterProtocol {
-    
+    func navigate(_ route: DetailRoutes) {
+        switch route {
+        case .openUrl(let url):
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+    }
 }

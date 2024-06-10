@@ -14,6 +14,7 @@ protocol DetailsCellProtocol {
     func setDetail(detail: String)
     func setButton(buttonTitle: String)
 
+
 }
 
 class DetailsCell: UITableViewCell {
@@ -39,7 +40,15 @@ class DetailsCell: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func tapAddListButton(_ sender: Any) {
-        cellPresenter?.saveList()
+        UIView.animate(withDuration: 0.3, animations: {
+            self.addListButton.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+           }, completion: { _ in
+               UIView.animate(withDuration: 0.3, animations: {
+                   self.cellPresenter?.saveList()
+                   self.addListButton.transform = CGAffineTransform.identity
+               })
+           })
+
     }
 }
 
@@ -71,6 +80,8 @@ extension DetailsCell: DetailsCellProtocol {
     
     func setButton(buttonTitle: String) {
         addListButton.setTitle(buttonTitle, for: .normal)
+        addListButton.configuration?.titleAlignment = .center
+        addListButton.setTitleColor(.black, for: .normal)
     }
     
     

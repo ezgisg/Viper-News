@@ -68,6 +68,8 @@ extension NewsDetailViewController: NewsDetailViewControllerProtocol {
     func setupSearchBar() {
         searchBar.delegate = self
         if isReadingList {
+            let searchBarHeightConstraint = searchBar.heightAnchor.constraint(equalToConstant: 0)
+            searchBarHeightConstraint.isActive = true
             searchBar.isHidden = true
         }
     }
@@ -105,6 +107,19 @@ extension NewsDetailViewController: UITableViewDelegate {
         if offsetY > contentHeight - height {
             presenter?.loadMoreData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            tableView.cellForRow(at: indexPath)?.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.3) {
+                tableView.cellForRow(at: indexPath)?.transform = CGAffineTransform.identity
+            } completion: { _ in
+                self.presenter?.tappedRow(indexPath.row)
+            }
+        })
     }
 }
 

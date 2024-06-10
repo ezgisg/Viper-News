@@ -54,7 +54,6 @@ extension SplashPresenter: SplashPresenterProtocol {
         if internetStatus {
 //            router.navigate(.homeScreen)
             router.navigate(.tabBar)
-            //TODO: home ekranına otomatik yönlendirme
         } else {
             view.makeAlert(title: Constants.noConnectionTitle, message: Constants.noConnectionMessage)
             interactor.checkInternetConnection()

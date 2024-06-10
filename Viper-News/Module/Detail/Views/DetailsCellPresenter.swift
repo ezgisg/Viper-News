@@ -18,11 +18,10 @@ protocol DetailCellDelegate: AnyObject {
 
 extension DetailsCellPresenter {
     fileprivate enum Constants {
-      static let addListTitle = "Okuma Listesine Ekle"
-      static let removeFromListTitle = "Okuma Listesinden Çıkart"
+        static let addListTitle = "➕Add 📋 "
+        static let removeFromListTitle = "➖Remove"
     }
 }
-
 
 final class DetailsCellPresenter {
     var article: Article
